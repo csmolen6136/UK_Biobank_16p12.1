@@ -1,0 +1,20 @@
+Thu 19 Jan 2023 07:05:43 PM EST starting job 7 on ramona
+This is run 7
+It will run terms GO:0123000 - GO:0143500
+235
+0
+         GO:0140359  GO:0140090  GO:0140682  ...  GO:0140161   Case_Control  Sex
+1310721           0           0           0  ...           0  NoCNV_Control    1
+3932165           0           0           0  ...           0  NoCNV_Control    0
+4194309           0           0           0  ...           0  NoCNV_Control    0
+4456456           1           0           0  ...           0  NoCNV_Control    1
+2490380           1           0           0  ...           0  NoCNV_Control    0
+...             ...         ...         ...  ...         ...            ...  ...
+5373942           0           0           0  ...           0  NoCNV_Control    1
+4194295           0           0           0  ...           0  NoCNV_Control    1
+1310712           0           0           0  ...           0  NoCNV_Control    1
+4325369           0           0           0  ...           0  NoCNV_Control    0
+4718587           1           0           0  ...           0  NoCNV_Control    1
+
+[47262 rows x 237 columns]
+Thu 19 Jan 2023 07:08:48 PM EST ending job

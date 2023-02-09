@@ -1,0 +1,4 @@
+control,tets,case_n,control_n,statistic,p
+NoCNV_Control,"one tailed t-test, greater",227,95202,5.421314622196657,2.965267314241527e-08
+LargeRare_Control,"one tailed t-test, greater",227,4441,4.3996175597685605,5.542986605663705e-06
+NEJM_Control,"one tailed t-test, greater",227,2394,3.1647417776352125,0.0007850078640081635

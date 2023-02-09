@@ -1,0 +1,25 @@
+measure,control,test,case_n,control_n,statistic,p
+Index of Multiple Deprivation (England),NoCNV_Control,"one tailed t-test, greater",199,82922,3.597170807546165,0.00016094186994909128
+Index of Multiple Deprivation (England),LargeRare_Control,"one tailed t-test, greater",199,3901,2.623049452570732,0.0043734715584364415
+Index of Multiple Deprivation (England),NEJM_Control,"one tailed t-test, greater",199,2097,1.6658404317271598,0.047940866761753
+Income score (England),NoCNV_Control,"one tailed t-test, greater",199,82922,3.178730253783442,0.000739879302875817
+Income score (England),LargeRare_Control,"one tailed t-test, greater",199,3901,2.323031450385263,0.010113087603773087
+Income score (England),NEJM_Control,"one tailed t-test, greater",199,2097,1.4291220582202182,0.07655265387471391
+Employment score (England),NoCNV_Control,"one tailed t-test, greater",199,82922,3.9493441648754084,3.9215083954459897e-05
+Employment score (England),LargeRare_Control,"one tailed t-test, greater",199,3901,2.809058244543366,0.0024961036515627226
+Employment score (England),NEJM_Control,"one tailed t-test, greater",199,2097,1.7120743275492565,0.0435090627451774
+Health score (England),NoCNV_Control,"one tailed t-test, greater",199,82922,4.8417368606461775,6.446995177911834e-07
+Health score (England),LargeRare_Control,"one tailed t-test, greater",199,3901,3.807441138409759,7.123269602220204e-05
+Health score (England),NEJM_Control,"one tailed t-test, greater",199,2097,2.9446652078185847,0.0016327768476503018
+Education score (England),NoCNV_Control,"one tailed t-test, greater",199,82922,5.406983523090241,3.213556575237888e-08
+Education score (England),LargeRare_Control,"one tailed t-test, greater",199,3901,3.9485482101631546,3.9973359281660146e-05
+Education score (England),NEJM_Control,"one tailed t-test, greater",199,2097,2.446524708306799,0.007249342789537511
+Housing score (England),NoCNV_Control,"one tailed t-test, greater",199,82922,-3.0168734397773935,0.9987226317569673
+Housing score (England),LargeRare_Control,"one tailed t-test, greater",199,3901,-2.36092036518583,0.9908618966737545
+Housing score (England),NEJM_Control,"one tailed t-test, greater",199,2097,-1.5144675180462774,0.9349774656407311
+Crime score (England),NoCNV_Control,"one tailed t-test, greater",199,82922,1.354976521697275,0.0877143599476062
+Crime score (England),LargeRare_Control,"one tailed t-test, greater",199,3901,0.9987481498358766,0.15898783886980072
+Crime score (England),NEJM_Control,"one tailed t-test, greater",199,2097,0.4102494954992245,0.340830623281724
+Living environment score (England),NoCNV_Control,"one tailed t-test, greater",199,82922,1.1445621525585725,0.12619693683950575
+Living environment score (England),LargeRare_Control,"one tailed t-test, greater",199,3901,1.1028338509939153,0.13508204216656605
+Living environment score (England),NEJM_Control,"one tailed t-test, greater",199,2097,1.0481617627084003,0.14733725084148433
