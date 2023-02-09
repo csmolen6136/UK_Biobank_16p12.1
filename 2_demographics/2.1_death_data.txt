@@ -1,0 +1,16 @@
+Date of death data was downloaded from the UK Biobank Data Portal (https://biobank.ndph.ox.ac.uk/showcase/dbportal.cgi)  on February 9, 2023 using the following SQL query:
+SELECT death.eid, date_of_death, cause_icd10 FROM death_cause JOIN death using (eid, ins_index) WHERE level=1
+
+The resulting table was then downloaded
+
+To access portal:
+1. log in to the UK Biobank application
+2. Nativagate to projects and click "View/Update" on the project you want the data for
+3. Click on the "Data" tab
+4. Click "Go to Showcase to refresh or download data"
+5. Click on the "1 Data Portal" tab
+6. Click "Connect"
+7. Enter the SQL string above and click "Fetch Data"
+8. Download
+
+See documentation for more information (https://biobank.ndph.ox.ac.uk/ukb/refer.cgi?id=115559)
