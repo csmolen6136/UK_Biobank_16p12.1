@@ -49,7 +49,6 @@ file.close()
 cols=[]
 for f in fields:
 	cols += [i.replace('"', '') for i in header if (f+'-')==i[1:len(f)+2]]
-print(cols)
 
 phenos = pd.read_csv('/data4/UK_Biobank/download/ukb30075.csv', encoding='unicode_escape', usecols = ['eid']+cols)
 print(phenos.shape)
@@ -93,8 +92,9 @@ for key in field_codes:
 phenos.columns=[row_dict[i] for i in cols]
 
 # Add date of death
-dod=pd.read_csv('analysis_files/death_query.txt', sep='\t', index_col=0)
-dod_dict=dod['date_of_death'].to_dict()
+dod=pd.read_csv('analysis_files/death_query.txt', sep='\t')
+dod=dod[dod.eid.isin(phenos.eid.to_list())]
+dod_dict=dict(zip(dod.eid.to_list(), dod.date_of_death.to_list()))
 phenos['DOD']=phenos.eid.map(dod_dict)
 
 # Calculate current age and age at death
@@ -106,6 +106,14 @@ phenos['current_age']=dobs.apply(lambda dob: (datetime.datetime(2023, 2, 8)-dob)
 
 df2=pd.DataFrame({'DOB':dobs, 'DOD':dods})
 phenos['age_at_death']=df2.apply(lambda x: (x.DOD-x.DOB).days, axis=1)
+
+# Add the cause of death
+# Some samples have multiple causes listed - report both separated by :
+cause_dict={}
+for eid in list(dod.eid.unique()):
+	causes=':'.join(dod[dod.eid==eid]['cause_icd10'].to_list())
+	cause_dict[eid]=causes
+phenos['cause_of_death']=phenos.eid.map(cause_dict)
 
 # Annotate case/control status
 cc_dict=dict(zip(df.Sample.to_list(), df.Case_Control.to_list()))

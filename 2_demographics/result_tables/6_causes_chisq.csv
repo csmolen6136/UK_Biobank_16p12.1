@@ -1,0 +1,4 @@
+control,test,statistic,p
+NoCNV_Control,chi-squared,14.321188288600062,0.501322173467719
+LargeRare_Control,chi-squared,10.42384092098378,0.730585977790821
+NEJM_Control,chi-squared,10.846050010702827,0.6980854933373103
