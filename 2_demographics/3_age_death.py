@@ -12,6 +12,8 @@ df=df[['eid', 'current_age', 'age_at_death', 'Case_Control']]
 
 df['duration']=df.age_at_death
 df.loc[df.age_at_death.isnull(), 'duration']=df.current_age
+# Convert duration from days to years
+df.duration=df.duration/365.25
 
 df['status']=1
 df.loc[df.age_at_death.isnull(), 'status']=0
@@ -53,7 +55,7 @@ for cont in controls:
 		plt.plot(ages, out.KM_estimate, color=color, label=c)
 
 	plt.ylabel('Survival')
-	plt.xlabel('Age (days)')
+	plt.xlabel('Age (years)')
 	plt.legend()
 
 	pdf.savefig()
