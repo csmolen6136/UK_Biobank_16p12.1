@@ -74,7 +74,7 @@ for c in controls:
 			err=subdf.sex_err.to_list()[i]
 			plt.plot([est-err, est+err], [i-0.1, i-0.1], color='#f1c40f')
 		if max(subdf.sex_err.to_list())>3:
-			plt.xlim(lo-1, hi+1)
+			plt.xlim(lo-2, hi+2)
 		# Add axis label
 		meanings=subdf.meaning.to_list()
 		ylabels=[]
@@ -88,7 +88,7 @@ for c in controls:
 		plt.title(c+' '+str(ch))
 		# Add a line at 0
 		plt.plot([0, 0], [-0.5, max(ys)+0.5], color='k', ls=':', zorder=0)
-		plt.ylim(-0.1, max(ys)+0.1)
+		plt.ylim(-0.25, max(ys)+0.25)
 
 		plt.tight_layout()
 		pdf.savefig()
