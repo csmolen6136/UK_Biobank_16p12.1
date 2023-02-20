@@ -73,7 +73,7 @@ for c in controls:
 			est=subdf.sex_est.to_list()[i]
 			err=subdf.sex_err.to_list()[i]
 			plt.plot([est-err, est+err], [i-0.1, i-0.1], color='#f1c40f')
-		if max(subdf.sex_est.to_list())>10:
+		if max(subdf.sex_err.to_list())>3:
 			plt.xlim(lo, hi)
 		# Add axis label
 		meanings=subdf.meaning.to_list()
