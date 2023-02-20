@@ -60,11 +60,21 @@ for c in controls:
 		# Make a forest plot showing all significant results
 		ys=list(range(0, subdf.shape[0]))
 		# Plot Case-Control estimates and error bars
-		plt.scatter(subdf.cc_est.to_list(), [i for i in ys], color='#2c3e50', label='Case-Control')
+		plt.scatter(subdf.cc_est.to_list(), [i+0.1 for i in ys], color='#2c3e50', label='Case-Control')
 		for i in ys:
 			est=subdf.cc_est.to_list()[i]
 			err=subdf.cc_err.to_list()[i]
-			plt.plot([est-err, est+err], [i, i], color='#2c3e50')
+			plt.plot([est-err, est+err], [i+0.1, i+0.1], color='#2c3e50')
+		# Plot sex estimates and error bars
+		# Some codes have very high error values for sex - maintain view of current plot
+		lo, hi = plt.xlim()
+		plt.scatter(subdf.sex_est.to_list(), [i-0.1 for i in ys], color='#f1c40f', label='Sex')
+		for i in ys:
+			est=subdf.sex_est.to_list()[i]
+			err=subdf.sex_err.to_list()[i]
+			plt.plot([est-err, est+err], [i-0.1, i-0.1], color='#f1c40f')
+		if max(subdf.sex_est.to_list())>10:
+			plt.xlim(lo, hi)
 		# Add axis label
 		meanings=subdf.meaning.to_list()
 		ylabels=[]
