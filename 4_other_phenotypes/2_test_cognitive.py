@@ -107,7 +107,7 @@ for z in z_cols:
 
 		# T-test
 		t, p = stats.ttest_ind(case_vals, cont_vals, alternative='less')
-		stat_lst.append([z, c, 'one tailed t-test, less', np.nanmean(case_vals), np.nanmean(cont_vals), t, p])
+		stat_lst.append([z, c, 'one tailed t-test, less', len(case_vals), len(cont_vals), np.nanmean(case_vals), np.nanmean(cont_vals), t, p])
 
 		# Violinplot
 		sns.violinplot(data=df[df.Case_Control.isin(['Case', c])], y=z, x='Case_Control')
@@ -116,6 +116,6 @@ for z in z_cols:
 
 pdf.close()
 
-stat_df=pd.DataFrame(stat_lst, columns=['Measure', 'Control', 'Test', 'Case_mean', 'Control_mean', 'statistic', 'p-value'])
+stat_df=pd.DataFrame(stat_lst, columns=['Measure', 'Control', 'Test', 'Case_n', 'Control_n', 'Case_mean', 'Control_mean', 'statistic', 'p-value'])
 print(stat_df)
 stat_df.to_csv('result_tables/2_cognition_ttest.csv', index=False)
