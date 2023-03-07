@@ -14,30 +14,57 @@ df=pd.read_csv('analysis_files/1_kendall_cognitive.csv')
 # The 2 trail making assessments have low sample size in cases (24), skip these
 df.drop(['traila_time', 'trailb_time'], axis=1, inplace=True)
 
-# For all others, check skew and log+1 normalize
+phenos=['pairs_matching_errors','reaction_time_mean', 'fluid_intelligence', 'numeric_memory_maxdigits', 'sd_sub_correctmatches']
+
+# For all others, check skew and normalize, if needed
 skew_dat=[]
 pdf=PdfPages('Figures/2_normalization.pdf')
-controls=['NoCNV_Control', 'LargeRare_Control', 'NEJM_Control']
-for p in df.columns.to_list():
-	if p=='Sample' or p=='Case_Control':
-		continue
+for p in phenos:
 	arr=df[p].to_list()
 	sk=stats.skew(arr, nan_policy='omit', bias=False)
 	kurt=stats.kurtosis(arr, nan_policy='omit', bias=False)
 
-	df[p+'+norm']=df[p].apply(lambda v: np.log10(v+1))
-	arr2=df[p+'+norm']
-	sk2=stats.skew(arr2, nan_policy='omit', bias=False)
-	kurt2=stats.kurtosis(arr2, nan_policy='omit', bias=False)
+	norm_needed=False
+	sk2='no normalization'
+	kurt2='no normalization'
+
+	if p=='pairs_matching_errors':
+		# log+1 normalize
+		df[p+'+norm']=df[p].apply(lambda v: np.log10(v+1))
+		arr2=df[p+'+norm']
+		sk2=stats.skew(arr2, nan_policy='omit', bias=False)
+		kurt2=stats.kurtosis(arr2, nan_policy='omit', bias=False)
+
+		norm_needed=True
+
+	if p=='reaction_time_mean':
+		# log normalize
+		df[p+'+norm']=df[p].apply(lambda v: np.log10(v))
+		arr2=df[p+'+norm']
+		sk2=stats.skew(arr2, nan_policy='omit', bias=False)
+		kurt2=stats.kurtosis(arr2, nan_policy='omit', bias=False)
+
+		norm_needed=True
+
+	if p=='sd_sub_correctmatches':
+		# Remove outliers (<3 and >36 subsitutions)
+		df[p+'+norm']=df[p]
+		df.loc[(df[p+'+norm']<3) | (df[p+'+norm']>36), p+'+norm']=np.nan
+		arr2=df[p+'+norm']
+		sk2=stats.skew(arr2, nan_policy='omit', bias=False)
+		kurt2=stats.kurtosis(arr2, nan_policy='omit', bias=False)
+
+		norm_needed=True
 
 	# Plot before and after distributions
 	fig, ax1=plt.subplots()
 	sns.histplot(arr, color='blue', alpha=0.5, ax=ax1)
 	ax1.tick_params(axis='x', color='blue')
 
-	ax2=ax1.twiny()
-	sns.histplot(arr2, color='red', alpha=0.5, ax=ax2)
-	ax2.tick_params(axis='x', color='red')
+	if norm_needed:
+		ax2=ax1.twiny()
+		sns.histplot(arr2, color='red', alpha=0.5, ax=ax2)
+		ax2.tick_params(axis='x', color='red')
 
 	plt.title
 
