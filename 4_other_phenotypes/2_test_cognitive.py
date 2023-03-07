@@ -110,7 +110,7 @@ for z in z_cols:
 		stat_lst.append([z, c, 'one tailed t-test, less', len(case_vals), len(cont_vals), np.nanmean(case_vals), np.nanmean(cont_vals), t, p])
 
 		# Violinplot
-		sns.violinplot(data=df[df.Case_Control.isin(['Case', c])], y=z, x='Case_Control')
+		sns.violinplot(data=df[df.Case_Control.isin(['Case', c])], y=z, x='Case_Control', order=['Case', c])
 		pdf.savefig()
 		plt.close()
 
