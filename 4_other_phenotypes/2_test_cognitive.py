@@ -99,7 +99,7 @@ for sc in score_cols:
 z_cols = [i for i in df.columns.to_list() if 'Z' in i]
 controls=['NoCNV_Control', 'LargeRare_Control', 'NEJM_Control']
 stat_lst=[]
-pdf=PdfPages('Figures/2_coginition_violins.pdf')
+pdf=PdfPages('Figures/2_cognition_histograms.pdf')
 for z in z_cols:
 	for c in controls:
 		case_vals=df[(df.Case_Control=='Case') & (~df[z].isnull())][z].to_numpy()
@@ -109,8 +109,8 @@ for z in z_cols:
 		t, p = stats.ttest_ind(case_vals, cont_vals, alternative='less')
 		stat_lst.append([z, c, 'one tailed t-test, less', len(case_vals), len(cont_vals), np.nanmean(case_vals), np.nanmean(cont_vals), t, p])
 
-		# Violinplot
-		sns.violinplot(data=df[df.Case_Control.isin(['Case', c])], y=z, x='Case_Control', order=['Case', c])
+		# Histograms
+		sns.histplot(data=df[df.Case_Control.isin(['Case', c])], x=z, hue='Case_Control', hue_order=['Case', c], alpha=0.5)
 		pdf.savefig()
 		plt.close()
 
